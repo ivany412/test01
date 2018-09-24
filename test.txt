@@ -6,4 +6,237 @@ test5
 test5
 test5
 test6
+
+
+test6
 test_ya
+test_ya
+
+# -*- coding: utf-8 -*-
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing
+from sklearn import model_selection
+from sklearn.decomposition import PCA
+from sklearn.cross_decomposition import PLSRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import AdaBoostRegressor
+from sklearn.metrics import explained_variance_score, mean_squared_error
+#
+df = pd.read_excel(u'', sheet_name = u'обучение') # контроль
+#df.info
+#
+df.set_index(df.loc[:,'xxx'], inplace=True)
+
+asx1 = df.columns[7:].values.tolist()
+asx2 = []
+tmp_nam_feat = [x for x in asx1 if x not in asx2]
+#
+asx1 = df.loc[:, df.columns[0]].values
+asx2 = [] # iiiind2_neg #
+tmp_nam_samp = [x for x in asx1 if x not in asx2]
+#
+tmp_X_test = df.loc[tmp_nam_samp,tmp_nam_feat].values
+tmp_Y_test = df.loc[tmp_nam_samp,'xxxxx'].values
+print(tmp_X_test.shape)
+print(tmp_Y_test.shape)
+#print(iiiind2_neg[:10])
+#print(asx1[:10])
+#print(tmp_nam_samp[:10])
+
+
+X_reg = tmp_X_test
+Y_reg = tmp_Y_test
+#
+reg1 = PLSRegression(n_components=8)
+reg2 = DecisionTreeRegressor(max_depth=4)
+reg3 = AdaBoostRegressor(DecisionTreeRegressor(max_depth=4),\
+                        n_estimators=300) #, random_state=rng
+#
+IndexesD = range(0,X_reg.shape[0])
+kfold = model_selection.KFold(10, True, 1)
+out_t = []
+for train, test in kfold.split(IndexesD):
+    reg1.fit(X_reg[train,:], Y_reg[train])
+    reg2.fit(X_reg[train,:], Y_reg[train])
+    reg3.fit(X_reg[train,:], Y_reg[train])
+    #
+    y1_p = reg1.predict(X_reg[test,:])
+    y2_p = reg2.predict(X_reg[test,:])
+    y3_p = reg3.predict(X_reg[test,:])
+    #
+    out_t.extend([100*np.mean(y1_p/Y_reg[test]),\
+                  100*np.mean(y2_p/Y_reg[test]),\
+                  100*np.mean(y3_p/Y_reg[test])])
+
+pl_out_t = np.array(out_t).reshape(int(len(out_t)/3),3)
+plt.plot(pl_out_t[:,0], 'r', pl_out_t[:,1], 'g', pl_out_t[:,2], 'b')
+plt.xlabel('kfold')
+plt.ylabel('$Y_{predccit} / Y$')
+plt.legend(['P','T','A'])
+plt.show()
+
+pl_out_t = np.array(out_t).reshape(int(len(out_t)/3),3)
+plt.plot(pl_out_t[:,0], 'r', pl_out_t[:,1], 'g', pl_out_t[:,2], 'b')
+plt.xlabel('kfold')
+plt.ylabel('$Y_{predccit} / Y$')
+plt.legend(['P','T','A'])
+plt.show()
+
+X_scal = tmp_X_test
+#
+scaler = preprocessing.StandardScaler()
+scaler.fit(X_scal)
+X_s = scaler.transform(X_scal)
+#
+fig = plt.figure(figsize=(18,6))
+plt.subplot(121)
+plt.plot(X_s.transpose().conj())
+plt.xticks(range(0,X_s.shape[1]), tmp_nam_feat, rotation=90)
+plt.grid(True)
+plt.subplot(122)
+plt.plot(X_s)
+plt.show()
+
+XX = X_s
+fig, ax = plt.subplots(num=None, figsize=(16, 18), dpi=80, facecolor='w', edgecolor='k')
+ax.stackplot(range(0,XX.shape[0]), XX.transpose().conj())
+#plt.xlim(0,100)
+plt.show()
+
+
+fig = plt.figure(figsize=(18,6))
+
+data = X_s.transpose().conj() # tmp_X_test.transpose().conj()
+
+columns = (tmp_nam_samp)
+
+rows = ['%s' % x for x in tmp_nam_feat]
+
+values = np.arange(0, len(tmp_nam_feat), 1)
+value_increment = 1
+
+fig, ax = plt.subplots(num=None, figsize=(16, 18), dpi=80, facecolor='w', edgecolor='k')
+
+# Get some pastel shades for the colors
+colors = plt.cm.Greens(np.linspace(0, 0.5, len(rows))) #YlGnBu BuPu
+n_rows = len(data)
+
+index = np.arange(len(columns)) + 0.3
+bar_width = 0.8
+
+# Initialize the vertical-offset for the stacked bar chart.
+y_offset = np.zeros(len(columns))
+
+# Plot bars and create text labels for the table
+cell_text = []
+for row in range(n_rows):
+    plt.bar(index, data[row], bar_width, bottom=y_offset, color=colors[row])
+    y_offset = y_offset + data[row]
+    cell_text.append(['%1.1f' % (x / 1000.0) for x in y_offset])
+
+plt.show()
+
+pca = PCA(n_components=8)
+X_tr = pca.fit_transform(X_s)
+X_com = pca.components_
+
+tmp_mah = []
+for i in X_tr:
+    V = np.cov(X_tr.T)
+    VI = np.linalg.inv(V)
+    tmp_mah.append( np.sqrt( np.max(np.diag((i-np.mean(X_tr, 0)).T * VI * (i-np.mean(X_tr, 0)))) ) ) 
+with open('tmp.txt', 'w') as of: of.write( ','.join([str(i) for i in tmp_mah]) )
+with open('tmp.txt', 'r') as of: tmp_in = of.read(); tmp_in = [np.float(i) for i in tmp_in.split(',')]
+
+fig = plt.figure(figsize=(20,12))
+ax = fig.add_subplot(2,1,2)
+plt.hist(tmp_in)
+ax = fig.add_subplot(2,2,1)
+plt.plot(X_com[0,:],X_com[1,:],'bo')
+plt.xlabel('PC1'); plt.ylabel('PC2');plt.grid()
+[plt.text(x, y, l) for x,y,l in zip(X_com[0,:],X_com[1,:],tmp_nam_feat)]
+ax = fig.add_subplot(2,2,2)
+plt.plot(X_tr[:,0],X_tr[:,1],'bo')
+plt.xlabel('PC1'); plt.ylabel('PC2');plt.grid()
+
+plt.show()
+
+
+X_pca = np.dot(X_tr, X_com)
+E = X_s - X_pca
+
+fig = plt.figure(figsize=(20,10))
+fig.subplots_adjust(hspace=0.8)
+
+ax = fig.add_subplot(212)
+tmp_mean_samp = np.mean(E, 1)
+plt.hist(tmp_mean_samp)
+
+ax = fig.add_subplot(221)
+plt.plot(np.mean(E,0))
+plt.xticks(range(0,E.shape[1]), tmp_nam_feat, rotation='vertical')
+plt.xlabel('Variables')
+plt.ylabel('Weight')
+plt.title('Weights Variables')
+plt.grid()
+
+ax = fig.add_subplot(222)
+plt.plot(tmp_in, np.abs(np.mean(E,1)), 'go')
+[plt.text(x, y, l) for x,y,l in zip(tmp_in,np.abs(np.mean(E,1)),tmp_nam_samp)]
+plt.xlabel('Leverage')
+plt.ylabel('Residual')
+plt.title('Influence Samples')
+
+plt.show()
+
+
+ttt = df.set_index('xxx')
+
+mass = np.asarray(ro_arr)
+iiiind1_pos = [ tmp_nam_samp[i] for i in (mass < 1.0).nonzero()[0] ]
+iiiind2_pos = [ tmp_nam_samp[i] for i in ((mass > 1) & (mass < 2)).nonzero()[0] ]
+iiiind3_pos = [ tmp_nam_samp[i] for i in (mass > 2).nonzero()[0] ]
+
+mass = tmp_mean_samp
+iiiind1_neg = [ tmp_nam_samp[i] for i in ((mass < -0.15) | (mass > 0.15)).nonzero()[0] ]
+iiiind2_neg = [ tmp_nam_samp[i] for i in ((mass > -0.1) & (mass < 0.1)).nonzero()[0] ]
+
+param = 'xxxxx' # 
+
+fig = plt.figure(num=None, figsize=(16, 3), dpi=80, facecolor='w', edgecolor='k')
+plt.plot( ( ttt.loc[iiiind1_pos, param] ).values, 'r',\
+         (ttt.loc[list( set(iiiind2_pos) - set(iiiind2_neg) ), param] ).values, 'b',\
+         ( ttt.loc[iiiind3_pos, param] ).values, 'g')
+plt.show()
+
+
+plt.style.use('bmh')
+fig = plt.figure(num=None, figsize=(16, 12), dpi=80, facecolor='w', edgecolor='k')
+
+#ax = plt.subplots()
+
+plt.hist(( ttt.loc[iiiind1_pos, param] ).values, histtype="stepfilled",
+            alpha=0.8, density=False, color='r')
+plt.hist((ttt.loc[list( set(iiiind2_pos)  ), param] ).values, histtype="stepfilled",
+           alpha=0.8, density=False, color='b')
+plt.hist(( ttt.loc[iiiind3_pos, param] ).values, histtype="stepfilled",
+            alpha=0.8, density=False, color='g')
+#- set(iiiind2_neg)
+plt.show()
+
+def show_arr1(df_in, show_arr_in):
+    plt.figure(num=None, figsize=(20, 18), dpi=80, facecolor='w', edgecolor='k')
+    n = len(show_arr_in)
+    n1 = n//3 + 1
+    n2 = 3
+    print(n,n1,n2)
+    count = 1
+    for ind in show_arr_in:
+        ax = plt.subplot(n1, n2, count)
+        plt.hist(df[ind])
+        count = count + 1
+    plt.show()
+
+show_arr1(df, df.columns[7:])
