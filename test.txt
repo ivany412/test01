@@ -7,6 +7,11 @@ test5
 test5
 test6
 
+https://duckduckgo.com/?q=python+estimate+square+of+histogram&kp=1&t=ffsb&ia=qa
+https://nahlogin.blogspot.com/2016/01/pandas.html
+https://pythonhosted.org/PyQt-Fit/KDE_tut.html
+http://scikit-learn.org/stable/modules/density.html
+http://benalexkeen.com/basic-statistics-in-python/
 
 test6
 test_ya
