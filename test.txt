@@ -4,7 +4,40 @@ test3
 test4
 test5
 test5
-test5
+xdata, ydata = np.random.random((2, 10))
+tmp_points = []
+tmp_colors = []
+fig, ax = plt.subplots()
+for i,j in zip(xdata,ydata):
+    line, = ax.plot(i, j, 'bo')
+    tmp_points.append(line)
+    tmp_colors.append(line.get_color)
+
+point, = ax.plot([],[], marker="o", color="crimson")
+text = ax.text(0,0,"")
+
+def line_select_callback(eclick, erelease):
+    x1, y1 = eclick.xdata, eclick.ydata
+    x2, y2 = erelease.xdata, erelease.ydata
+
+    mask= (xdata > min(x1,x2)) & (xdata < max(x1,x2)) & \
+          (ydata > min(y1,y2)) & (ydata < max(y1,y2))
+    xmasked = xdata[mask]
+    ymasked = ydata[mask]
+
+    inds = np.nonzero(mask)
+
+    if len(xmasked) > 0:
+        #
+        # Read artists from scatter and find color of points inside rectangle
+        t_i = np.nonzero('b' == tmp_colors[inds])
+        if(len(t_i) > 0):
+            [i = 'r' for i in tmp_colors[t_i]]
+            tmp_points[t_i].set_color ='r'
+        t_i = np.nonzero('b' != tmp_colors[inds])
+        if(len(t_i) > 0):
+            tmp_colors[t_i] = 'b'
+            tmp_points[t_i].set_color ='b'
 test6
 
 import matplotlib.pyplot as plt
