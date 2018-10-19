@@ -1,1 +1,2 @@
 Бенджамин В. Рут Interactive Applications Using Matplotlib
+https://python-scripts.com/build-neural-network
