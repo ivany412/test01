@@ -1,7 +1,22 @@
 Бенджамин В. Рут Interactive Applications Using Matplotlib
 https://python-scripts.com/build-neural-network
+
+https://switch-case.ru/69321758
+
 https://machinelearningmastery.com/feature-selection-machine-learning-python/
 https://ramhiser.com/post/2018-03-25-feature-selection-with-scikit-learn-pipeline/
 https://hub.packtpub.com/4-ways-implement-feature-selection-python-machine-learning/
 https://www.kaggle.com/residentmario/automated-feature-selection-with-sklearn
 https://www.example-code.com/python/socket_http_proxy.asp
+
+def my_norm(X, mn=[]):
+    if len(mn) == 0:
+        mn = np.mean(X,0).reshape(1,X.shape[1])
+    nr = X - np.ones((X.shape[0],1))*mn
+    return mn, nr
+
+def my_scal(X, st=[]):
+    if len(st) == 0:
+        st = np.std(X,0).reshape(1,X.shape[1])
+    sc = X / ( np.ones((X.shape[0],1))*st )
+    return st, sc
