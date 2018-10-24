@@ -1,2 +1,7 @@
 Бенджамин В. Рут Interactive Applications Using Matplotlib
 https://python-scripts.com/build-neural-network
+https://machinelearningmastery.com/feature-selection-machine-learning-python/
+https://ramhiser.com/post/2018-03-25-feature-selection-with-scikit-learn-pipeline/
+https://hub.packtpub.com/4-ways-implement-feature-selection-python-machine-learning/
+https://www.kaggle.com/residentmario/automated-feature-selection-with-sklearn
+https://www.example-code.com/python/socket_http_proxy.asp
