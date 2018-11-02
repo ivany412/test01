@@ -25,3 +25,6 @@ def my_scal(X, st=[]):
 https://iwatobipen.wordpress.com/tag/hadoop/
 http://scikit-learn.org/stable/auto_examples/cross_decomposition/plot_compare_cross_decomposition.html
 https://www.youtube.com/embed/Qi7vFKh1EyA?wmode=transparent
+
+
+https://compscicenter.ru/courses/data-mining-python/2018-spring/
