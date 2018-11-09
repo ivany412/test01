@@ -1,5 +1,89 @@
 test
 test2
+
+
+# -*- coding: utf-8 -*-
+# This import registers the 3D projection, but is otherwise unused.
+from mpl_toolkits.mplot3d import Axes3D 
+from numpy.random import beta
+import matplotlib.pyplot as plt
+import scipy as sc
+
+size=10000
+x = scipy.arange(size)
+y1 = beta(10, 10, size=size)*25
+y2 = beta(4, 12, size=size)*25
+y3 = beta(50, 12, size=size)*25
+
+
+h = [h1, h2, h3]
+
+fig = plt.figure(figsize=(20,10))
+
+ax0 = fig.add_subplot(221)
+
+h1 = plt.hist(y1, histtype="stepfilled",
+            bins=25, alpha=0.8, density=True)
+h2 = plt.hist(y2, histtype="stepfilled",
+            bins=25, alpha=0.8, density=True)
+h3 = plt.hist(y3, histtype="stepfilled",
+            bins=25, alpha=0.8, density=True)
+
+ax1 = fig.add_subplot(223, projection='3d')
+
+y = []
+colors = ['r', 'g', 'b']
+yticks = [3, 2, 1]
+for c, k, s in zip(colors, yticks, h):
+    # Generate the random data for the y=k 'layer'.
+    ys = s[0]
+    xs = np.arange(len(ys))
+    # You can provide either a single color or an array with the same length as
+    # xs and ys. To demonstrate this, we color the first bar of each set cyan.
+    cs = [c] * len(xs)
+    #cs[0] = 'c'
+
+    # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
+    ax1.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
+
+ax1.set_xlabel(u'Оборот')
+ax1.set_ylabel(u'')
+ax1.set_zlabel(u'F')
+
+# On the y axis let's only label the discrete values that we have data for.
+ax1.set_yticks(yticks, ['u','h','k','m'])
+
+ax2 = fig.add_subplot(224)
+
+#ax2.hist(y1, histtype="stepfilled",
+#            bins=25, alpha=0.8, density=True)
+#ax2.hist(y2, histtype="stepfilled",
+#            bins=25, alpha=0.8, density=True)
+#ax2.hist(y3, histtype="stepfilled",
+#            bins=25, alpha=0.8, density=True)
+
+dist_names = ['beta'] #['alpha', 'beta', 'arcsine','weibull_min', 'weibull_max', 'rayleigh']
+
+for dist_name in dist_names:
+    dist = getattr(sc.stats, dist_name)
+    #
+    param = dist.fit(y1)
+    pdf_fitted = dist.pdf(x, *param[:-2], loc=param[-2], scale=param[-1]) * size
+    ax2.plot(pdf_fitted, label=dist_name, color=colors[0])
+    #
+    param = dist.fit(y2)
+    pdf_fitted = dist.pdf(x, *param[:-2], loc=param[-2], scale=param[-1]) * size
+    ax2.plot(pdf_fitted, label=dist_name, color=colors[1])
+    #
+    param = dist.fit(y3)
+    pdf_fitted = dist.pdf(x, *param[:-2], loc=param[-2], scale=param[-1]) * size
+    ax2.plot(pdf_fitted, label=dist_name, color=colors[2])
+    plt.xlim(0,50)
+
+plt.show()
+
+
+
 test3
 test4
 test5
