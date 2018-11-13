@@ -1,3 +1,150 @@
+
+
+===============================================================================
+===============================================================================
+===============================================================================
+# -*- coding: utf-8 -*-
+#https://stackoverflow.com/questions/42172926/pool-map-list-index-out-of-range-python
+#http://qaru.site/questions/1139485/python-multiprocessing-poolmap-raises-indexerror
+#http://qaru.site/questions/1139487/debugging-errors-in-python-multiprocessing
+import time
+import pandas as pd
+import multiprocessing as mp,os
+import pickle
+
+count = 0
+
+def t_process(line):
+    global count
+    t_line = line[:-1].split(';')
+    print(t_line[-1])
+    if (t_line[-1]==1):
+        count = count + 1
+        print(count)
+
+def process_wrapper(chunkStart, chunkSize, item):
+    with open("") as f:
+        f.seek(chunkStart)
+        lines = f.read(chunkSize).splitlines()
+        out = []
+        for line in lines:
+            t_l = line[:-1].split(';')
+            if (t_l[1] == item):
+                out.append( [int(t_l[2]), float(t_l[6].replace(',','.'))] )
+    return out
+
+def chunkify(fname,size=1024*1024*128):
+    fileEnd = os.path.getsize(fname)
+    with open(fname,'r') as f:
+        chunkEnd = f.tell()
+        while True:
+            chunkStart = chunkEnd
+            f.seek(size, 1)
+            f.readline()
+            chunkEnd = f.tell()
+            yield chunkStart, chunkEnd - chunkStart
+            if chunkEnd > fileEnd:
+                break
+
+if __name__ == '__main__':
+    cores = 2
+    #init objects
+    #pool = mp.Pool(cores)
+    #jobs = []
+
+    with open("") as of:
+        tmp_r = of.read().split('\n')
+    struc = {}
+    for item1 in tmp_r:
+        print(item1)
+        pool = mp.Pool(cores)
+        jobs = []
+        #create jobs
+        for chunkStart,chunkSize in chunkify(""):
+            #print(chunkStart,chunkSize)
+            jobs.append( pool.apply_async(process_wrapper,(chunkStart,chunkSize,item1)) )
+        print(len(jobs))
+        #clean up
+        pool.close()
+        pool.join()
+        #wait for all jobs to finish
+        tmp = []
+        for job in jobs:
+            #time.sleep(20)
+            tmp.extend( job.get())
+            #tmp = pd.Series(tmp).unique().tolist()
+            print(len(tmp))
+        print('' + str(item1) + ' done!')
+        #
+        tmp_m = pd.DataFrame(tmp)
+        struc[int(item1)] = {}
+        for ind1 in tmp_m[0].unique():
+            struc[int(item1)][ind1] = sum(tmp_m.loc[tmp_m.index[tmp_m[0]==ind1], 1])
+        with open("" + "_" + str(item1) + ".txt", "w") as of:
+            of.writelines([str((i,struc[int(item1)][i]))[1:-1] +\
+             '\n' for i in struc[int(item1)].keys()])
+    #
+    file = open('filename_save.pkl', 'w')
+    pickle.dump(struc, file)
+    print('all done')
+===============================================================================
+===============================================================================
+===============================================================================
+# -*- coding: utf-8 -*-
+import os
+import sys
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+#
+def fun_proc(data):
+    bs = np.percentile(data, [25,50,75], axis=0)
+    h = plt.hist(data)
+    inds = (h[0] > bs[-1]).nonzero()
+    if (np.max(h[0][inds]) - np.min(h[0][inds]) != 0):
+        return (np.max(h[1][inds]) - np.min(h[1][inds]))/\
+            (np.max(h[0][inds]) - np.min(h[0][inds]))
+    else: return 0
+
+def main():
+    if (len(sys.argv[1]) == 0):
+        print("Error: No input a file")
+    else:
+        pathdir = sys.argv[1]
+        out = []
+        for item1 in os.listdir(pathdir):
+            data = pd.read_csv(pathdir + '\\' + item1, sep=",", header=None)
+            out.append( [int(item1.split("_")[-1][:-4]),fun_proc(data[1])] )
+        #
+        y = np.array(out)
+        bs = np.percentile(y[:,1], [25,50,75], axis=0)
+        inds1 = ((y[:,1] < bs[0]) | (y[:,1] == bs[0])).nonzero()[0]
+        inds2 = ((y[:,1] > bs[0]) & (y[:,1] < bs[1]) | (y[:,1] == bs[1])).nonzero()[0]
+        inds3 = ((y[:,1] > bs[1]) & (y[:,1] < bs[2])).nonzero()[0]
+        inds4 = ((y[:,1] > bs[2]) | (y[:,1] == bs[2])).nonzero()[0]
+        # add label
+        labels = np.ones((len(y[:,1]),1))
+        print(labels.shape)
+        if (len(inds1) != 0):
+            labels[inds1] = 0
+        if (len(inds2) != 0):
+            labels[inds2] = 1
+        if (len(inds3) != 0):
+            labels[inds3] = 2
+        if (len(inds4) != 0):
+            labels[inds4] = 3
+        y = np.hstack((y,labels))
+        # save result to file
+        with open("out_file.txt", "w") as of:
+            for i in y:
+                of.writelines(str(i)[1:-1] + '\n')
+
+if __name__ == '__main__':
+    main()
+===============================================================================
+===============================================================================
+===============================================================================
+
 #-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:
