@@ -1,4 +1,129 @@
+#-------------------------------------------------------------------------------
+# Name:        module1
+# Purpose:
+#
+# Author:      admin2
+#
+# Created:     12.11.2018
+# Copyright:   (c) admin2 2018
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+import numpy as np
+import multiprocessing as mp,os
+
+PathFile = "input.txt"
+
+def process_wrapper(chunkStart, chunkSize):
+    with open(PathFile) as f:
+        f.seek(chunkStart)
+        lines = f.read(chunkSize).splitlines()
+        for line in lines:
+            t_l = line[-1].split(';')
+            struc = fun_pars_ch(t_l[1], t_l[2], t_l[5], struc)
+    return struc
+
+def chunkify(fname,size=1024*1024*128):
+    fileEnd = os.path.getsize(fname)
+    with open(fname,'r') as f:
+        chunkEnd = f.tell()
+        while True:
+            chunkStart = chunkEnd
+            f.seek(size,1)
+            f.readline()
+            chunkEnd = f.tell()
+            yield chunkStart, chunkEnd - chunkStart
+            if chunkEnd > fileEnd:
+                break
+
+def fun_pars_ch(a, b, c, st):
+    t1_ind = (np.array([int(i) for i in st.keys()]) == a).nonzero()[0]
+    if (len(t1_ind) == 1):
+        t2_ind = (np.array([int(i) for i in st[str(a)].keys()]) == b).nonzero()[0]
+        if (len(t2_ind) == 1):
+            st[str(a)][str(b)] = st[str(a)][str(b)] + c
+        else:
+            st[str(a)][str(b)] = c
+    else:
+        st[str(a)] = {str(b): c}
+    return st
+
+def main():
+    cores = 4
+    #init objects
+    pool = mp.Pool(cores)
+    jobs = []
+
+    #create jobs
+    for chunkStart,chunkSize in chunkify(PathFile):
+        jobs.append( pool.apply_async(process_wrapper,(chunkStart,chunkSize)) )
+    tmp = []
+    #wait for all jobs to finish
+    for job in jobs:
+        tmp.extend(job.get())
+
+    #clean up
+    pool.close()
+
+    struc_out = {}
+    for i in tmp:
+        for j in i.keys():
+            for k in j[i].keys():
+                struc_out = fun_pars_ch(i[j][k], i[j][k], i[a.keys()[0]], struc_out)
+    #
+    #print(struc)
+
+
+if __name__ == '__main__':
+    main()
+
 test
+
+
+
+
+#-------------------------------------------------------------------------------
+# Name:        module1
+# Purpose:
+#
+# Author:      admin2
+#
+# Created:     13.11.2018
+# Copyright:   (c) admin2 2018
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+#https://stackoverflow.com/questions/27731458/fastest-way-to-write-large-csv-with-python
+import random
+import uuid
+import numpy as np
+import csv
+import os
+
+def main1():
+    outfile = 'data.csv'
+    outsize = 1024 * 1024 * 1024 # 1GB
+    with open(outfile, 'ab') as csvfile:
+        size = 0
+        while size < outsize:
+            txt = '%s,%.6f,%.6f,%i\n' % (uuid.uuid4(), random.random()*50, random.random()*50, random.randrange(1000))
+            size += len(txt)
+            csvfile.write(txt)
+
+def main2():
+    outfile = 'data-alt.csv'
+    outsize = 1000 # MB
+    chunksize = 1000
+    with open(outfile, 'ab') as csvfile:
+        while (os.path.getsize(outfile)//1024**2) < outsize:
+            data = [[uuid.uuid4() for i in range(chunksize)],
+                    np.random.random(chunksize)*50,
+                    np.random.random(chunksize)*50,
+                    np.random.randint(1000, size=(chunksize,))]
+            csvfile.writelines(['%s,%.6f,%.6f,%i\n' % row for row in zip(*data)])
+
+if __name__ == '__main__':
+    main2()
+
+
 test2
 
 
