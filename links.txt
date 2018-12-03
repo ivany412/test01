@@ -1,3 +1,7 @@
+Books of Sebastian Raschka
+https://sebastianraschka.com/books.html
+https://github.com/rasbt/python-machine-learning-book
+
 Бенджамин В. Рут Interactive Applications Using Matplotlib
 https://python-scripts.com/build-neural-network
 
