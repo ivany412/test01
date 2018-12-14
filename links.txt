@@ -1,3 +1,5 @@
+https://r11---sn-n8v7znzl.googlevideo.com/videoplayback?expire=1544787311&ms=au%2Crdu&id=o-AERBfcAp5koJdt1g2uX_1199JvAiNIyfvTWq3oG3b-x8&mv=m&mt=1544765600&mn=sn-n8v7znzl%2Csn-n8v7kn7r&pl=19&source=youtube&mm=31%2C29&requiressl=yes&ip=93.80.41.184&mime=video%2Fmp4&ei=DkETXOzfN9OUyAWIyr3wDQ&lmt=1540475192723215&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cnh%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&gir=yes&nh=IgpwcjA0LnN2bzAzKgkxMjcuMC4wLjE%2CIgpwcjAzLnN2bzA1KgkxMjcuMC4wLjE&fvip=11&dur=664.322&signature=90360359753288F5BDDBB8AC76D68313FD5F0BE8.A09DF80B53F8666DD916EEAE52DCF7E74832CD3B&initcwndbps=1570000&c=WEB&clen=38676272&itag=18&ipbits=0&ratebypass=yes&txp=5431432&key=yt6&video_id=12rcdJKSGFc&title=%D0%9A%D0%B0%D0%BA+%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BD+Python+%E2%96%BA+%D0%94%D0%B5%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9+%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80
+
 Books of Sebastian Raschka
 https://sebastianraschka.com/books.html
 https://github.com/rasbt/python-machine-learning-book
