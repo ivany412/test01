@@ -1,5 +1,18 @@
 
+import os
+import requests
+from tqdm import tqdm
+from google.colab import files
 
+url = ""
+response = requests.get(url, stream=True)
+
+with open("test.mp4", "wb") as handle:
+    for data in tqdm(response.iter_content()):
+        handle.write(data)
+
+print(os.listdir(os.getcwd()))
+files.download('/content/test.mp4')
 ===============================================================================
 ===============================================================================
 ===============================================================================
