@@ -27,6 +27,33 @@ def my_scal(X, st=[]):
     sc = X / ( np.ones((X.shape[0],1))*st )
     return st, sc
 
+def centering_my(X, *args):
+    #
+    if(len(args) > 0):
+        X_mean = args[0]
+    else:
+        X_mean = np.mean(X, 0) # mean value of columns
+    #
+    Xc = X - np.ones((X.shape[0],1))*X_mean
+    #
+    return Xc, X_mean
+
+def scaling_my(X, *args):
+    #
+    if ( len(args) > 0 ):
+        X_std = args[0]
+    else:
+        X_std = np.std(X, axis=0) # Standard deviation of columns
+    Xs = np.matrix(X) * np.matrix( np.linalg.inv(np.diag(X_std)) )
+    #
+    return Xs, X_std
+
+#def sdf
+#    #from sklearn.preprocessing import StandardScaler
+#    std = StandardScaler()
+#    train_data = std.fit_transform(x_t)
+#    test_data = std.transform(x_t_t)
+
 
 https://iwatobipen.wordpress.com/tag/hadoop/
 http://scikit-learn.org/stable/auto_examples/cross_decomposition/plot_compare_cross_decomposition.html
@@ -91,3 +118,136 @@ https://scikit-learn.org/stable/auto_examples/plot_anomaly_comparison.html#sphx-
 ==========================================================================================================
 
 
+https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0
+https://medium.com/@rrfd/boosting-bagging-and-stacking-ensemble-methods-with-sklearn-and-mlens-a455c0c982de
+https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b
+https://medium.com/@rrfd/cookiecutter-data-science-organize-your-projects-atom-and-jupyter-2be7862f487e
+
+
+
+https://habr.com/ru/company/microsoft/blog/229083/
+https://habr.com/ru/post/354154/
+
+https://habr.com/ru/post/438070/
+https://habr.com/ru/post/438104/
+https://habr.com/ru/post/438400/
+https://habr.com/ru/post/438400/
+
+http://benalexkeen.com/using-azure-cognitive-services-to-caption-video/ - Using Azure Cognitive Services to Caption Video
+
+Д, Сэломон - Сжатие данных изображений и звука
+Python для сложных задач наука о данных и машинное обучение
+http://www.ievbras.ru/ecostat/Kiril/
+
+25.01.2019
+https://pythonspot.com/
+
+18.01.2019
+https://towardsdatascience.com/best-resources-for-ai-machine-learning-data-science-d72625d4689d
+https://towardsdatascience.com/a-quick-overview-of-optimization-models-for-machine-learning-and-statistics-38e3a7d13138
+https://towardsdatascience.com/a-bayesian-approach-to-time-series-forecasting-d97dd4168cb7
+https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d
+https://towardsdatascience.com/aifortrading-2edd6fac689d
+
+
+
+15.01.2019
+http://dataaspirant.com/2016/12/27/k-nearest-neighbor-algorithm-implementaion-python-scratch/
+https://www.webpages.uidaho.edu/~stevel/stat517.htm
+https://www.kdnuggets.com/2016/01/implementing-your-own-knn-using-python.html/3
+https://www.oreilly.com/library/view/machine-learning-with/9781789134780/video3_3.html
+
+
+https://community.modeanalytics.com/python/tutorial/python-histograms-boxplots-and-distributions/
+https://mashimo.wordpress.com/2018/07/22/multi-class-logistic-regression/
+https://mashimo.wordpress.com/category/machine-learning/
+https://mashimo.wordpress.com/2017/09/25/introduction-to-ntlk/#more-11268
+https://mashimo.wordpress.com/2017/09/16/the-overfitting-problem-and-the-bias-vs-variance-dilemma/
+https://mashimo.wordpress.com/2017/07/29/nlp3o-a-web-app-for-simple-text-analysis/
+https://realpython.com/python-histograms/
+http://danielhnyk.cz/#open
+https://docs.pymc.io/notebooks/empirical-approx-overview.html
+https://medium.com/@rrfd/what-is-maximum-likelihood-estimation-examples-in-python-791153818030
+https://medium.com/@rrfd
+https://www.ozon.ru/context/detail/id/144631199/
+https://www.ozon.ru/context/detail/id/140939231/
+https://www.ozon.ru/context/detail/id/142046092/
+https://www.ozon.ru/context/detail/id/136172978/
+https://www.ozon.ru/context/detail/id/145044982/
+https://www.ozon.ru/context/detail/id/141754606/
+https://www.ozon.ru/context/detail/id/139907968/
+https://www.ozon.ru/context/detail/id/139599620/
+https://www.ozon.ru/context/detail/id/137356026/
+https://www.trud.com/books/item/91517.html
+https://www.trud.com/books/item/91516.html
+https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjut-XDuePfAhUIjSwKHbD4AbkQMwiJASg9MD0&url=http%3A%2F%2Fbookash.pro%2Fru%2Ft%2FBig%2Bdata%2F&psig=AOvVaw3aq4dGb-WUFGaaKVf0OBci&ust=1547217782901377&ictx=3&uact=3
+https://www.google.com/search?safe=active&client=firefox-b&q=hands-on+cryptography+with+python:+leverage+the+power+of+python+to+encrypt+and+decrypt+data&stick=H4sIAAAAAAAAAONgecQYzi3w8sc9YSm_SWtOXmP04OIKzsgvd80rySypFNLjYoOyVLgEpXj10_UNDdMNLY0rCguKNRik-LlQhZS4mvatOMTGwsEowMADAKyzupZcAAAA&sa=X&ved=2ahUKEwi6lf2cuuPfAhXFhKYKHZFOAX8Q6RMwC3oECAcQBA&biw=1440&bih=791
+https://stackoverflow.com/questions/30056762/rsa-encryption-and-decryption-in-python
+https://www.laurentluce.com/posts/python-and-cryptography-with-pycrypto/
+https://medium.com/@ismailakkila/black-hat-python-encrypt-and-decrypt-with-rsa-cryptography-bd6df84d65bc
+https://stackoverflow.com/questions/16823558/rsa-communication-between-javascript-and-python?rq=1
+https://stackoverflow.com/questions/32577862/rsa-2048-decrypt-not-working-pkcs1-oaep-incorrect-decryption
+https://docs.microsoft.com/ru-ru/learn/modules/interactive-deep-learning/?utm_source=tproger_ru&utm_medium=banner&utm_campaign=tproger_events
+https://tproger.ru/digest/learning-crypto/
+https://tproger.ru/problems/rsa/
+https://tproger.ru/tag/brain-teasers/
+
+
+Computer Science. Основы программирования на Java, ООП, алгоритмы и структуры данных
+Cassandra. Полное руководство. Распределенные данные в масштабе веба
+Дискретная математика для программистов
+Введение в системы баз данных
+Учитесь видеть бизнес-процессы. Построение карт потоков создания ценности
+Базы данных. Проектирование, реализация и сопровождение. Теория и практика
+Семь баз данных за семь недель. Введение в современные базы данных и идеологию NoSQL
+
+Построение бизнес-моделей. Настольная книга стратега и новатора
+Bash. Карманный справочник системного администратора
+Масштабирование приложений. Выращивание сложных систем
+Программирование на языке Rust
+Аналитика как конкурентное преимущество. Новая наука побеждать
+Статистика и котики
+Азбука аналитики
+Мозг освобожденный. Как предотвратить перегрузки и использовать свой потенциал на полную мощь
+Революция сна. Как менять свою жизнь ночь за ночью
+Применение UML 2.0 и шаблонов проектирования. Введение в объектно-ориентированный анализ, проектирование и итеративную разработку
+MySQL. Оптимизация производительности
+Корпоративная презентация. Как продать идею за 10 слайдов
+Мечтают ли андроиды об электроовцах?
+Разработка геоприложений на языке Python
+Искусство объяснять. Как сделать так, чтобы вас понимали с полуслова
+Реляционные базы данных
+Computer Science. Основы программирования на Java, ООП, алгоритмы и структуры данных
+Cassandra. Полное руководство. Распределенные данные в масштабе веба
+Microsoft SQL Server 2012. Основы T-SQL
+Дискретная математика для программистов
+
+
+https://alexanderdyakonov.files.wordpress.com/2015/04/ama2015_pandas.pdf
+https://habr.com/company/ods/blog/322626/
+
+
+Новинки Web Development - Data - Mobile - Programming - Cloud & Networking - Security - Game Development - IoT & Hardware
+https://towardsdatascience.com/bringing-the-best-out-of-jupyter-notebooks-for-data-science-f0871519ca29
+https://hub.packtpub.com/home-assistant-an-open-source-python-home-automation-hub-to-rule-all-things-smart/
+
+Data Science проект от исследования до внедрения на примере Говорящей шляпы
+https://habr.com/company/ods/blog/430006/
+
+Открытый курс машинного обучения. Тема 5. Композиции: бэггинг, случайный лес
+https://habr.com/company/ods/blog/324402/
+
+VotingClassifier в sсikit-learn: построение и оптимизация ансамбля моделей классификации
+https://habr.com/post/430280/
+
+
+Sklearn: ROC for multiclass classification (есть пример с pipeline)
+https://stackoverflow.com/questions/45332410/sklearn-roc-for-multiclass-classification
+
+
+
+================= Smartphone-Radiotransmitter =================
+https://ru.aliexpress.com/item/Oinom-V9T-IP68-MTK6735-Qual-core-Android5-1-smartphone-waterproof-4-inch-outdoor-5200mAh-4g-lte/32815942166.html?spm=a2g0v.10010108.1000013.1.5ecd1febzdkOGg&pvid=ef947359-4ca3-4286-92f7-086bdb0dc5f6&gps-id=pcDetailBottomMoreThisSeller&scm=1007.13339.99734.0&scm-url=1007.13339.99734.0&scm_id=1007.13339.99734.0
+https://ru.aliexpress.com/item/BOXCHIP-S700A-IP67-Android-6-0-Octa/32880696661.html?spm=a2g0v.search0104.3.323.4e2b12b2pIYyxx&ws_ab_test=searchweb0_0%2Csearchweb201602_3_10065_10068_10890_319_10546_317_10548_10696_453_10084_454_10083_10618_10307_538_537_536_10059_10884_5730320_10887_100031_321_322_10915_10103_10910_5729220%2Csearchweb201603_51%2CppcSwitch_0&algo_pvid=ef77fd48-9a46-4ba5-9a6a-e34d9377ab8e&algo_expid=ef77fd48-9a46-4ba5-9a6a-e34d9377ab8e-47
+https://ru.aliexpress.com/item/Snopow-M5-4G-LTE-MTK6735/32871350374.html?spm=a2g0v.10010108.1000014.1.60e976a2g8PnyJ&pvid=6ad200d0-7a31-4055-84f3-a5559a36d943&gps-id=pcDetailBottomMoreOtherSeller&scm=1007.13338.110449.000000000000000&scm-url=1007.13338.110449.000000000000000&scm_id=1007.13338.110449.000000000000000
+====================================================================
