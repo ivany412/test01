@@ -1,3 +1,87 @@
+https://www.mytoys.ru/product/10353215?utm_campaign=cro_merged&mc=RUS_MTS_ONL_BAN_criteo_test_retargeting_1&utm_source=criteo&utm_medium=retargeting
+https://www.mytoys.ru/product/7934407
+https://www.mytoys.ru/product/7934399
+https://www.mytoys.ru/product/8523385
+https://www.mytoys.ru/product/7959028
+https://www.mytoys.ru/product/7959032
+https://www.mytoys.ru/product/7934427
+https://www.mytoys.ru/product/9449862
+https://www.mytoys.ru/product/7934405
+https://www.mytoys.ru/product/7420044
+https://www.mytoys.ru/product/6709642
+https://www.mytoys.ru/product/7934433
+https://www.mytoys.ru/product/9449864
+https://www.mytoys.ru/product/7934397
+https://www.mytoys.ru/product/10367416
+https://www.mytoys.ru/product/6709638
+https://www.mytoys.ru/product/7934403
+https://www.mytoys.ru/product/2504420
+https://www.mytoys.ru/product/6709640
+https://www.mytoys.ru/product/7934421
+=============================
+https://data-flair.training/blogs/python-genetic-algorithms-ai/
+https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_quick_guide.htm
+code.activestate.com/recipes/578128-genetic-algorithm-in-python-source-code-ai-junkie-/
+https://esa.github.io/pagmo2/docs/cpp/algorithms/sga.html
+http://www.obitko.com/tutorials/genetic-algorithms/crossover-mutation.php
+https://cs.stackexchange.com/questions/37199/selection-crossover-and-mutation-function-choice-in-genetic-algorithms
+https://towardsdatascience.com/genetic-algorithm-implementation-in-python-5ab67bb124a6
+https://gist.github.com/bellbind/741853
+================================
+http://toly.github.io/blog/2014/02/13/parallelism-in-one-line/
+https://ru.stackoverflow.com/questions/682612/multiprocessing-dummy-pool-Можно-ли-передать-в-функцию-map-несколько-аргументов
+https://habr.com/ru/post/440222/
+https://habr.com/ru/post/440040/
+https://habr.com/ru/post/84629/
+https://habr.com/ru/post/149420/
+https://habr.com/ru/post/260431/
+https://hackaday.io/projects?page=4
+https://blog.miguelgrinberg.com/post/easy-websockets-with-flask-and-gevent/page/0
+https://habr.com/ru/post/426361/
+Hands-On GPU Programming with Python and CUDA
+Learning Concurrency in Python
+Mastering Concurrency in Python
+Parallel Programming with Python
+Python High Performance
+https://www.youtube.com/watch?v=KAzCG6C8-7g
+http://proceedings.esri.com/library/userconf/devsummit17/papers/dev_int_39.pdf
+https://joblib.readthedocs.io/en/latest/parallel.html
+https://hackernoon.com/threaded-asynchronous-magic-and-how-to-wield-it-bba9ed602c32
+https://stackoverflow.com/questions/47313732/jupyter-notebook-never-finishes-processing-using-multiprocessing-python-3/47374811
+https://github.com/tqdm/tqdm/issues/485
+https://stackoverflow.com/questions/53751050/python-multiprocessing-understanding-logic-behind-chunksize
+Secret Recipes of the Python Ninja: Over 70 recipes that uncover powerful programming tactics in Python
+https://sebastianraschka.com/Articles/2014_multiprocessing.html
+https://medium.com/@bfortuner/python-multithreading-vs-multiprocessing-73072ce5600b
+https://stackabuse.com/parallel-processing-in-python/
+====================================
+https://www.amazon.com/Distributed-Computing-Python-Francesco-Pierfederici-ebook/dp/B01AXR8JAC
+https://www.amazon.com/Hadoop-Definitive-Storage-Analysis-Internet/dp/1491901632/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=6FQDFSAWDGR81MASFBPZ
+https://www.amazon.com/dp/1788290224/ref=sspa_dk_detail_0?psc=1
+https://www.amazon.com/dp/1788625447/ref=sspa_dk_detail_1?psc=1
+Functional Python Programming: Discover the power of functional programming, generator functions, lazy evaluation, the built-in itertools library, and monads, 2nd Edition Paperback – April 13, 2018
+by Steven F. Lott 
+Practical Time Series Analysis: Master Time Series Data Processing, Visualization, and Modeling using Python Paperback – September 28, 2017
+by Dr. Avishek Pal (Author), Dr. PKS Prakash (Author)
+Hands-On Markov Models with Python: Implement probabilistic models for learning complex data sequences using the Python ecosystem Paperback – September 27, 2018
+by Ankur Ankan (Author), Abinash Panda
+Mastering Spark for Data Science Paperback – March 29, 2017
+by Andrew Morgan (Author), Antoine Amend (Author), David George (Author), Matthew Hallett (Author)
+Practical Data Wrangling: Expert techniques for transforming your raw data into a valuable source for analytics Paperback – November 15, 2017
+by Allan Visochek
+Mastering Predictive Analytics with scikit-learn and TensorFlow: Implement machine learning techniques to build advanced predictive models using Python Paperback – September 29, 2018
+by Alan Fontaine
+Learning Python for Forensics Paperback – May 30, 2016
+by Preston Miller (Author), Chapin Bryce
+Mastering Python High Performance Paperback – September 9, 2015
+by Fernando Doglio
+Kivy: Interactive Applications in Python - Second Edition Paperback – June 29, 2015
+by Roberto Ulloa
+Spark Cookbook Paperback – July 27, 2015
+by Rishi Yadav
+Python and HDF5: Unlocking Scientific Data 1st Edition
+by Andrew Collette
+
 https://r11---sn-n8v7znzl.googlevideo.com/videoplayback?expire=1544787311&ms=au%2Crdu&id=o-AERBfcAp5koJdt1g2uX_1199JvAiNIyfvTWq3oG3b-x8&mv=m&mt=1544765600&mn=sn-n8v7znzl%2Csn-n8v7kn7r&pl=19&source=youtube&mm=31%2C29&requiressl=yes&ip=93.80.41.184&mime=video%2Fmp4&ei=DkETXOzfN9OUyAWIyr3wDQ&lmt=1540475192723215&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cnh%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&gir=yes&nh=IgpwcjA0LnN2bzAzKgkxMjcuMC4wLjE%2CIgpwcjAzLnN2bzA1KgkxMjcuMC4wLjE&fvip=11&dur=664.322&signature=90360359753288F5BDDBB8AC76D68313FD5F0BE8.A09DF80B53F8666DD916EEAE52DCF7E74832CD3B&initcwndbps=1570000&c=WEB&clen=38676272&itag=18&ipbits=0&ratebypass=yes&txp=5431432&key=yt6&video_id=12rcdJKSGFc&title=%D0%9A%D0%B0%D0%BA+%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BD+Python+%E2%96%BA+%D0%94%D0%B5%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9+%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80
 
 Books of Sebastian Raschka
