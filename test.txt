@@ -921,3 +921,31 @@ def show_arr1(df_in, show_arr_in):
     plt.show()
 
 show_arr1(df, df.columns[7:])
+
+
+
+
+
+
+
+
+popsize
+Размер популяции.
+mutprob
+Вероятность того, что новая особь будет результатом мутации, а не
+скрещивания.
+elite
+Доля особей в популяции, считающихся хорошими решениями и пе-
+реходящих в следующее поколение.
+maxiter
+Количество поколений.
+Попробуем оптимизировать план путешествия с помощью генетичес-
+кого алгоритма:
+>>> s=optimization.geneticoptimize(domain,optimization.schedulecost)
+3532
+3503
+...
+2591
+2591
+2591
+>>> optimization.printschedule(s)
