@@ -1,3 +1,54 @@
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def anomal_filt(sig, w=3, s=1, d1=0.05, d2=1-0.05):
+    res = []
+    i = 0
+    while(i < len(sig)-w):
+        z1 = np.abs(sig[i]-sig[i+1])
+        z2 = np.abs(sig[i]-sig[i+2])
+        if((z1<d1*sig[i]) & (z2<d1*sig[i])):
+            res = sig[:i+3]
+            #print(z1,z2)
+            #print('plato')
+            i = len(sig)
+        elif((sig[i+1] < d2*sig[i]) & (sig[i+2] < d2*sig[i+1])):
+            res = sig[:i+3]
+            #print(sig[:i+3])
+            #print('low')
+            i = len(sig)
+        else:
+            i = i + 1
+    if(len(res)==0):
+       res = sig
+    return res
+
+def main():
+    res = []
+    a = pd.DataFrame()
+    for i in range(100):
+        noise = np.linspace(5,17,12) + np.random.normal(0,5,12)
+        res.append(anomal_filt(noise))
+        a = pd.concat([a, pd.DataFrame({'s'+str(i): res[-1]}, index=range(len(res[-1])))], axis=1)
+        print(res[-1].__len__())
+    print('ok')
+    out = []
+    for i in range(a.shape[0]):
+        tmp = a.loc[i,:].dropna()
+        out.append(np.median(tmp))
+    print('ok')
+    plt.subplot(211)
+    plt.plot(noise)
+    plt.subplot(212)
+    plt.plot(out)
+    plt.show()
+
+if __name__ == '__main__':
+    main()
+
+
 # -*- coding: utf-8 -*-
 from random import random,randint,choice
 from copy import deepcopy
