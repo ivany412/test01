@@ -1,3 +1,52 @@
+import numpy as np
+from sklearn.cluster import KMeans
+import random
+import pandas as pd
+import string
+
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+def sum_generator(size=10, band_coef=range(8,13)):
+    return [np.random.rand(1,random.choice(band_coef))[0].tolist()
+                      for i in range(size)]
+
+
+n = 100
+n_clust = 4 
+x = np.zeros([n, n])
+x[np.triu_indices(n, 1)] = np.random.randint(0, 100, (1,(n*n - n)/2))[0]
+x += x.T
+
+g_struct = {}
+g_struct['ID'] = range(n)
+g_struct['GR'] = range(n_clust)
+g_struct['SZ'] = np.random.randint(200, 1000, (1,n_clust))[0]
+g_struct['Sum'] = sum_generator(size=n)
+
+kmeans = KMeans(n_clusters=4, random_state=0).fit(x)
+
+indx = []
+for i in np.unique(kmeans.labels_):
+    indx.append((kmeans.labels_ == i).nonzero()[0].tolist())
+    print("{}: {}".format(len(indx[-1]), indx[-1]))
+#
+g_struct['Nets'] = indx
+
+new_samp = [1, 501, 4]
+
+c_seas = []
+for i in range(12):
+    tmp_df = pd.DataFrame(np.array(g_struct['Sum'])[g_struct['Nets'][new_samp[0]]].tolist())
+    c_seas.append(tmp_df.loc[:, 11].dropna().mean())
+c_seas = c_seas/np.sum(c_seas)
+print(c_seas)
+print(c_seas[new_samp[2]])
+
+tmp_df = pd.DataFrame(np.array(g_struct['Sum'])[g_struct['Nets'][new_samp[0]]].tolist())
+print(tmp_df)
+
+############################################################################################
 
 import numpy as np
 import pandas as pd
