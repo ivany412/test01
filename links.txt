@@ -1,3 +1,16 @@
+-------------------- 28.06.2019 --------------------
+https://hbr-russia.ru/karera/professionalnyy-i-lichnostnyy-rost/800355
+https://www.kaggle.com/wenjintana/randomforest-classification-with-own-code
+https://medium.com/tag/automation
+https://medium.com/@rossbulat/creating-supervisors-in-python-with-multi-threading-and-a-process-manager-8bc763c92d0e
+https://developers.google.com/machine-learning/crash-course/multi-class-neural-networks/video-lecture
+https://habr.com/ru/company/recognitor/blog/455676/
+https://blog.sicara.com/perfect-python-command-line-interfaces-7d5d4efad6a2
+https://blog.sicara.com/fast-custom-knn-sklearn-cython-de92e5a325c
+https://habr.com/post/427191/
+https://habr.com/post/123636/
+https://habr.com/company/lamoda/blog/426501/
+
 -------------------- 08.05.2019 --------------------
 http://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=ia&paperid=429&option_lang=rus
 http://zinref.ru/000_uchebniki/00600criminalistika/000_osnovi_criminalisticheskogo_issledovania_mitrichev_hrustalev/013.htm
