@@ -52,19 +52,19 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def anomal_filt(sig, w=3, s=1, d1=0.05, d2=1-0.05):
+def anomal_filt(sig, w=3, s=1, d1=0.05, d2=1-0.05, q_s1=3, q_s2=3):
     res = []
     i = 0
     while(i < len(sig)-w):
         z1 = np.abs(sig[i]-sig[i+1])
         z2 = np.abs(sig[i]-sig[i+2])
         if((z1<d1*sig[i]) & (z2<d1*sig[i])):
-            res = sig[:i+3]
+            res = sig[:i+q_s1]
             #print(z1,z2)
             #print('plato')
             i = len(sig)
         elif((sig[i+1] < d2*sig[i]) & (sig[i+2] < d2*sig[i+1])):
-            res = sig[:i+3]
+            res = sig[:i+q_s2]
             #print(sig[:i+3])
             #print('low')
             i = len(sig)
@@ -74,29 +74,79 @@ def anomal_filt(sig, w=3, s=1, d1=0.05, d2=1-0.05):
        res = sig
     return res
 
+def anomal_filt2(sig, w=3, s=1, d1=0.05, d2=1-0.05):
+    res = []
+    i = 0
+    while(i < len(sig)-w):
+        z1 = np.abs(sig[i]-sig[i+1])
+        z2 = np.abs(sig[i]-sig[i+2])
+        if((z1<d1*sig[i]) & (z2<d1*sig[i])):
+            #res.append(np.nan)
+            #res.append(np.nan)
+            #i += 3
+            i = len(sig)
+        elif((sig[i+1] < d2*sig[i]) & (sig[i+2] < d2*sig[i+1])):
+            res.append(np.nan)
+            res.append(np.nan)
+            i += 3
+        else:
+            res.append(sig[i])
+            i += 1
+        if((i > len(sig)-w) | (i == len(sig)-w)):
+            res.extend(sig[i:])
+    return res
+
+def wr_f(path_f='TMP.txt'):
+    with open(path_f, 'w') as of:
+        for j in noise:
+            of.write("\t".join([str(i) for i in j]))
+            of.write("\n")
+
+def re_f(path_f='TMP.txt'):
+    res = []
+    with open(path_f, 'r') as of:
+        for i in of.read().split('\n'):
+            res.append([float(j) for j in i.split('\t')])
+    return res
+
 def main():
+    # Generate signal
+    #q_sig = 100
+    #noise = np.ones((q_sig,1)) * np.linspace(5,17,12) + \
+    #        np.random.normal(0,5,(q_sig,12))
+    #
+    noise = np.array(re_f())
+    rng = np.random.RandomState(42)
+    noise = np.abs(rng.normal(10,50,(noise.shape))) + noise
+    #
+    plt.subplot(311)
     res = []
     a = pd.DataFrame()
-    for i in range(100):
-        noise = np.linspace(5,17,12) + np.random.normal(0,5,12)
-        res.append(anomal_filt(noise))
+    for i in range(len(noise)):
+        #res.append(anomal_filt(noise[i], q_s1=0, q_s2=0))
+        res.append(anomal_filt2(noise[i], d1=0.2, d2=1-0.05))
+        plt.plot(res[-1])
         a = pd.concat([a, pd.DataFrame({'s'+str(i): res[-1]}, index=range(len(res[-1])))], axis=1)
         print(res[-1].__len__())
     print('ok')
     out = []
+    out2 = []
     for i in range(a.shape[0]):
         tmp = a.loc[i,:].dropna()
-        out.append(np.median(tmp))
+        out.append(tmp)
+        out2.append(np.median(tmp))
+    plt.subplot(312)
+    plt.bar(range(len(out)), [len(i) for i in out])
     print('ok')
-    plt.subplot(211)
-    plt.plot(noise)
-    plt.subplot(212)
-    plt.plot(out)
+    plt.subplot(313)
+    #plt.boxplot(out)
+    plt.plot(out2)
     plt.show()
 
 if __name__ == '__main__':
     main()
-
+    
+############################################################################################
 
 # -*- coding: utf-8 -*-
 from random import random,randint,choice
