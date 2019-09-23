@@ -1,3 +1,9 @@
+http://lassauge.free.fr/qemu/QEMU_on_Windows.html
+portable qemu for windows
+https://webhamster.ru/mytetrashare/index/mtb191/1534313831qdzqjh2r8r
+Simple Portable Linux QEMU VM on a USB Drive
+http://bigdatacamp.megafon.ru
+
 -------------------- 28.06.2019 --------------------
 https://hbr-russia.ru/karera/professionalnyy-i-lichnostnyy-rost/800355
 https://www.kaggle.com/wenjintana/randomforest-classification-with-own-code
