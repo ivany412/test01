@@ -1,4 +1,45 @@
 import numpy as np
+from PIL import Image, ImageDraw
+import PIL.ImageOps 
+from matplotlib import cm
+"""
+a = np.ones((256, 256))
+
+im = Image.fromarray(np.uint8(cm.gist_earth(a)*255))
+
+display(im)
+#im.save('test.png')
+im.size
+"""
+
+"""
+a = np.ones((256, 256))
+
+PIL_image = Image.fromarray(np.uint8(a)*255).convert('RGB')
+
+display(PIL_image)
+PIL_image.size
+"""
+
+#image = Image.open('test.png')
+
+# create an image
+image = Image.new("RGB", (286, 286), (255, 255, 255))
+
+draw = ImageDraw.Draw(image)
+x, y, r = image.size[0]/2, image.size[1]/2, 5
+draw.ellipse((x-r, y-r, x+r, y+r), fill=(255,0,0,0))
+
+cropped_img = image.crop((15, 15, image.size[0]-15, image.size[1]-15))
+
+#display(image)
+display(PIL.ImageOps.invert(cropped_img))
+#image.save('test_2.png')
+print("image.size: %s" %str(image.size))
+print("cropped_img.size: %s" %str(cropped_img.size))
+
+################################################
+import numpy as np
 from sklearn.cluster import KMeans
 import random
 import pandas as pd
