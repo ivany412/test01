@@ -1,3 +1,19 @@
+#df['elapased_months'] = df.today.dt.to_period('M').view(dtype='int64') - \
+#                        df.date.dt.to_period('M').view(dtype='int64')
+
+def q_days(df, date_in, n=3):
+  #for example date_in = '2016-12-01', n = 3 (months)
+
+  l_dates = pd.date_range(pd.to_datetime(date_in) - np.timedelta64(n-1, 'M'), periods=n, freq='m')
+
+  d_s = sum([int(i.strftime('%d')) for i in l_dates])
+
+  l_d = [i.strftime('%Y%m') for i in l_dates]
+
+  df.loc[df.month_id.isin(l_d), 'd'].sum()
+
+======================================================
+
 https://towardsdatascience.com/simple-gps-data-visualization-using-python-and-open-street-maps-50f992e9b676
 
 import numpy as np
