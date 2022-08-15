@@ -399,3 +399,37 @@ https://ru.aliexpress.com/item/Snopow-M5-4G-LTE-MTK6735/32871350374.html?spm=a2g
 ====================================================================
 
 http://wiki.programstore.ru/pishem-nejroset-na-python-chast-1/
+
+
+
+AWS
+служба прогнозирования врем. рядов Amazon Forecast (LSTNET, DeepAR).
+https://aws.amazon.com/blogs/desktop-and-application-streaming/anomaly-detection-in-amazon-workspaces/
+
+Asure Anomaly Detector@An AI service that helps you foresee problems before they occur
+https://azure.microsoft.com/en-us/services/cognitive-services/anomaly-detector/#overview
+
+facebook есть открытый пакет prophet для автоматического прогнозирвования врем. рядов
+https://github.com/facebook/prophet
+
+twitter есть AnomalyDetection
+AnomalyDetection is an open-source R package to detect anomalies which is robust, from a statistical standpoint, in the presence of seasonality and an underlying trend. The AnomalyDetection package can be used in wide variety of contexts. For example, detecting anomalies in system metrics after a new software release, user engagement post an A/B test, or for problems in econometrics, financial engineering, political and social sciences.
+https://github.com/twitter/AnomalyDetection
+
+Featuretools@Time series feature extraction, with possible conditionality on other variables with a pandas compatible relational-database-like data container
+https://github.com/Featuretools/featuretools
+
+cesium@Time series platform with feature extraction aiming for non uniformly sampled signals
+https://github.com/cesium-ml/cesium
+
+Flow Forecast@Flow Forecast is a deep learning for time series forecasting, classification, and anomaly detection framework built in PyTorch
+https://github.com/AIStream-Peelout/flow-forecast
+
+pytorch-forecasting@A time series forecasting library using PyTorch with various state-of-the-art network architectures.
+https://github.com/jdb78/pytorch-forecasting
+
+tsfresh@Extracts and filters features from time series, allowing supervised classificators and regressor to be applied to time series data
+https://github.com/blue-yonder/tsfresh
+
+ES-RNN forecasting algorithm@Python implementation of the winning forecasting method of the M4 competition combining exponential smoothing with a recurrent neural network using PyTorch
+https://github.com/damitkwr/ESRNN-GPU
