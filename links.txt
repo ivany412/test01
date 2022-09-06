@@ -419,6 +419,8 @@ https://github.com/twitter/AnomalyDetection
 Featuretools@Time series feature extraction, with possible conditionality on other variables with a pandas compatible relational-database-like data container
 https://github.com/Featuretools/featuretools
 
+https://towardsdatascience.com/how-do-you-use-categorical-features-directly-with-catboost-947b211c2923
+
 cesium@Time series platform with feature extraction aiming for non uniformly sampled signals
 https://github.com/cesium-ml/cesium
 
