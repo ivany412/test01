@@ -1,3 +1,5 @@
+https://disk.yandex.ru/d/wLpuky3FpBQ9qw
+
 #df['elapased_months'] = df.today.dt.to_period('M').view(dtype='int64') - \
 #                        df.date.dt.to_period('M').view(dtype='int64')
 
